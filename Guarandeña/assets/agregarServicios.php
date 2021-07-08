@@ -25,50 +25,33 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label>Descripción</label>
-                        <textarea  rows="5" type="text" id="descripcionServicio" name="descripcionServicio" class="form-control" minlength="100" maxlength="200" required></textarea>
+                        <textarea  rows="5" type="text" id="descripcionServicio" name="descripcionServicio" class="form-control" minlength="70" maxlength="100" required></textarea>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                    <label>Estado del servicio</label>
-                    <select id="estadoServicio" name="estadoServicio" class="form-control" required>
-                        <option value="">Seleccione</option>
-                        <option value="1">Activo</option>
-                        <option value="0">Inactivo</option>
-                    </select>
+                        <label>Estado del servicio</label>
+                        <select id="estadoServicio" name="estadoServicio" class="form-control" required>
+                            <option value="">Seleccione</option>
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
                     </div>
                     <div class="form-group col-md-6">
-                    <label>Servicio nuevo</label>
-                    <select id="servicioNuevo" name="servicioNuevo" class="form-control" required>
-                        <option value="">Seleccione</option>
-                        <option value="1">Si</option>
-                        <option value="0">No</option>
-                    </select>
+                        <label>Servicio nuevo</label>
+                        <select id="servicioNuevo" name="servicioNuevo" class="form-control" required>
+                            <option value="">Seleccione</option>
+                            <option value="1">Si</option>
+                            <option value="0">No</option>
+                        </select>
                     </div>
                 </div>
+                <div class="alert alert-primary" role="alert">
+                   Se puede agregar una o más fotos
+                </div>
                 <div class="form-row">
-                    <div class="alert alert-info form-group col-md-12" role="alert">
-                          Agregar hasta 5 imágenes jpg, png, gif, jpeg. 
-                        </div>
-                    <div class="form-group col-md-4" id="listas">
-                        <label><b>Agregar imagen 1</b></label>
-                        <input type="file" name="campo1" id="campo1" class="form-control" required>
-                    </div>
-                    <div class="form-group col-md-4" id="listas">
-                        <label><b>Agregar imagen 2</b></label>
-                        <input type="file" name="campo2" id="campo2" class="form-control">
-                    </div>
-                    <div class="form-group col-md-4" id="listas">
-                        <label><b>Agregar imagen 3</b></label>
-                        <input type="file" name="campo3" id="campo3" class="form-control">
-                    </div>
-                    <div class="form-group col-md-4" id="listas">
-                        <label><b>Agregar imagen 4</b></label>
-                        <input type="file" name="campo4" id="campo4" class="form-control">
-                    </div>
-                    <div class="form-group col-md-4" id="listas">
-                        <label ><b>Agregar imagen 5</b></label>
-                        <input type="file" name="campo5" id="campo5" class="form-control">
+                    <div class="form-group col-md-12">
+                        <input type="file" id="file" name="file[]" class="form-control" value="" multiple/>
                     </div>
                 </div>
                 <div id="respuesta" style="text-align:center"></div>

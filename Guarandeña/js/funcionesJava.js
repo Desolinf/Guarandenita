@@ -150,53 +150,13 @@ $("#datosLocalServicioE").submit(editarLocal)
         }
     });
     //Validar que el logo sea png/jpeg/jpg/GIF
-    $("#campo1").change(function() {
-        var file = this.files[0];
-        var imagefile = file.type;
+    $("#file").change(function() {
+        var file1 = this.files[0];
+        var imagefile = file1.type;
          var match= ["image/jpeg","image/png","image/jpg","image/gif"];
         if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])|| (imagefile==match[3]))){
             alert('Porfavor seleccione un formato de imágen válido (JPEG/JPG/PNG/GIF).');
-            $("#campo1").val('');
-            return false;
-        }
-    });
-    $("#campo2").change(function() {
-        var file = this.files[0];
-        var imagefile = file.type;
-         var match= ["image/jpeg","image/png","image/jpg","image/gif"];
-        if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])|| (imagefile==match[3]))){
-            alert('Porfavor seleccione un formato de imágen válido (JPEG/JPG/PNG/GIF).');
-            $("#campo2").val('');
-            return false;
-        }
-    });
-    $("#campo3").change(function() {
-        var file = this.files[0];
-        var imagefile = file.type;
-         var match= ["image/jpeg","image/png","image/jpg","image/gif"];
-        if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])|| (imagefile==match[3]))){
-            alert('Porfavor seleccione un formato de imágen válido (JPEG/JPG/PNG/GIF).');
-            $("#campo3").val('');
-            return false;
-        }
-    });
-    $("#campo4").change(function() {
-        var file = this.files[0];
-        var imagefile = file.type;
-         var match= ["image/jpeg","image/png","image/jpg","image/gif"];
-        if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])|| (imagefile==match[3]))){
-            alert('Porfavor seleccione un formato de imágen válido (JPEG/JPG/PNG/GIF).');
-            $("#campo4").val('');
-            return false;
-        }
-    });
-    $("#campo5").change(function() {
-        var file = this.files[0];
-        var imagefile = file.type;
-         var match= ["image/jpeg","image/png","image/jpg","image/gif"];
-        if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])|| (imagefile==match[3]))){
-            alert('Porfavor seleccione un formato de imágen válido (JPEG/JPG/PNG/GIF).');
-            $("#campo5").val('');
+            $("#file").val('');
             return false;
         }
     });

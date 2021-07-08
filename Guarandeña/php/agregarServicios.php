@@ -8,47 +8,30 @@ $precioServicio=$_POST['precioServicio'];
 $descripcionServicio=$_POST['descripcionServicio'];
 $estadoServicio=$_POST['estadoServicio'];
 $servicioNuevo=$_POST['servicioNuevo'];
-$campo1=$_FILES['campo1']['name'];
-$tamañoServicio=$_FILES['campo1']['size'];
-$tamañoServicio1=$_FILES['campo2']['size'];
-$tamañoServicio2=$_FILES['campo3']['size'];
-$tamañoServicio3=$_FILES['campo4']['size'];
-$tamañoServicio4=$_FILES['campo5']['size'];
-$imagen=addslashes(file_get_contents($_FILES['campo1']['tmp_name'])
-);
-$imagen1=addslashes(file_get_contents($_FILES['campo2']['tmp_name'])
-);
-$imagen2=addslashes(file_get_contents($_FILES['campo3']['tmp_name'])
-);
-$imagen3=addslashes(file_get_contents($_FILES['campo4']['tmp_name'])
-);
-$imagen4=addslashes(file_get_contents($_FILES['campo5']['tmp_name'])
-);
-//********************Falta agregar el cod admin despues de haber iniciado sesion*******************************
-$codAdmin=1;
-$estado=1;
-if (isset($campo1) && $campo1 != "") {
-	if(($tamañoServicio <= 1000000) && ($tamañoServicio1 <= 1000000) && ($tamañoServicio2 <= 1000000) && ($tamañoServicio3 <= 1000000) &&($tamañoServicio4 <= 1000000)){
-		/*$sql = "";
-			if(mysqli_query($dbconn, $sql)){
-				
-				echo "<script>alert('Datos guardados'); window.location.href='index.php?p=editarLocales';</script>";
-			}else{
-				echo "Problemas en el servidor, intente nuevamente. Si el problema persiste contacte al administrador";
-			}*/
-			echo "Datos guardados";
+$sql1= mysqli_query($dbconn, "INSERT INTO `servicios`(`CODTIENDASERVICIO`, `NOMBRESERVICIO`, `PRECIOSERVICIO`, `NUEVOSERVICIO`, `ESTADOSERVICIO`, `DESCRIPCION`) VALUES ('$codigoLocal','$nombreServicio','$precioServicio','$servicioNuevo','$estadoServicio','$descripcionServicio')");
+$sql2= mysqli_query($dbconn, "SELECT `CODSERVICIO` FROM `servicios` WHERE `NOMBRESERVICIO`='$nombreServicio'");
+$row=mysqli_fetch_array($sql2);
+if (isset($_FILES['file'])) {
+	for($x=0; $x<count($_FILES['file']["name"]);$x++){
+		$file=$_FILES['file'];
+		$nombre=$file['name'];
+		$tipo = $file["type"][$x];
+		$size = $file["size"][$x];
+		$imagen=addslashes(file_get_contents($file['tmp_name'][$x]));
+		if($tipo != "image/png" && $tipo != "image/jpg" && $tipo != "image/gif" && $tipo != "image/jpeg"){
+			echo "Formato no admitido, debe ser png, jpg, gif o jpeg";
+		}
+		elseif($size  > 1000000){
+			echo "El tamaño de la imagen debe ser de un MB como máximo";
+		}
+		else{
+			$sql=("INSERT INTO `fotoservicio`(`FOTOSERVICIO`, `CODSERVICIO`) VALUES ('$imagen','$row[0]')");
+			$result= mysqli_query($dbconn, $sql);
+		}
 	}
-	else{
-		echo "No se guardó, la imagen debe ser de tipo.png";
-	}
+	echo "<script>alert('Datos guardados exitosamente'); window.location.href='index.php?p=agregarServicio&codigo=".$codigoLocal."';</script>";
 }
 else{
-	$sql = "INSERT INTO `tiendaservicios` (`CODTIENDASERVICIO`, `CODCATEGORIASERVICIO`, `CODADMINISTRADOR`, `NOMBRESERVICIO`, `PROPIETARIO`, `DIRECCIONSERVICIO`, `UBICACIONSERVICIO`, `CELULARSERVICIO`, `TELEFONOSERVICIO`, `ESTADOSERVICIO`, `LOGOSERVICIO`, `CORREO`) VALUES (NULL, '$categoriaTienda', '$codAdmin', '$nombreLocalServicio', '$nombrePropietarioServicio', '$direccionServicio', '$ubicacionServicio', '$celularServicio', '$telefonoServicio', '$estado', ' ', '$emailServicio');";
-	if(mysqli_query($dbconn, $sql)){
-		//echo "Datos guardados";
-		echo "<script>alert('Datos guardados'); window.location.href='index.php?p=editarLocales';</script>";
-	}else{
-		echo "Problemas en el servidor, intente nuevamente. Si el problema persiste contacte al administrador";
-	}
+	echo "Error en el servidor, comuniquese con el administrador.";
 }
 ?>
