@@ -56,29 +56,31 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="alert alert-info form-group col-md-12" role="alert">
-                          Agregar hasta 5 imágenes jpg, png, gif, jpeg. 
+                    <label><b>Agregar nuevas imágenes</b></label>
+                    <div class="form-group col-md-12">
+                        <input type="file" id="file" name="file[]" class="form-control" value="" multiple/>
+                    </div>
+                </div>
+                <label><b>Eliminar imágenes</b></label>
+                <div class="form-row">
+                <?php
+                            $sql3=mysqli_query($dbconn, "SELECT `CODFOTOSERVICIO`, `FOTOSERVICIO`, `CODSERVICIO` FROM `fotoservicio` WHERE `CODSERVICIO`='$codigo'");
+                            while ($fotoServicio=mysqli_fetch_row($sql3)){
+                        ?>
+                    <div class="form-group col-xs-6" >
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <div class="thumbnail">
+                                <div class="pull-left">
+                                <input type="hidden" value="<?php echo $fotoServicio[0];?>"> <img src="data: image/png; base64,<?php echo base64_encode($fotoServicio[1]);?>" height="80" width="110"></div>
+                                <div class="pull-left"><a onclick="codigoFotoServicio('<?php echo $fotoServicio[0];?>')"><img src="images/eliminar.png"/></a></div>
+                                </div>
+                            </div>
                         </div>
-                    <div class="form-group col-md-4" id="listas">
-                        <label><b>Agregar imagen 1</b></label>
-                        <input type="file" name="campo1" id="campo1" class="form-control" required>
-                    </div>
-                    <div class="form-group col-md-4" id="listas">
-                        <label><b>Agregar imagen 2</b></label>
-                        <input type="file" name="campo2" id="campo2" class="form-control">
-                    </div>
-                    <div class="form-group col-md-4" id="listas">
-                        <label><b>Agregar imagen 3</b></label>
-                        <input type="file" name="campo3" id="campo3" class="form-control">
-                    </div>
-                    <div class="form-group col-md-4" id="listas">
-                        <label><b>Agregar imagen 4</b></label>
-                        <input type="file" name="campo4" id="campo4" class="form-control">
-                    </div>
-                    <div class="form-group col-md-4" id="listas">
-                        <label ><b>Agregar imagen 5</b></label>
-                        <input type="file" name="campo5" id="campo5" class="form-control">
-                    </div>
+                    </div>  
+                    <?php
+                        }
+                    ?> 
                 </div>
                 <div id="respuesta" style="text-align:center"></div>
                 <button type="submit" id="guardarServicios" class="btn btn-danger mx-auto d-block">Guardar</button>
@@ -86,5 +88,16 @@
             <br>
         </div>
         <script type="text/javascript" src="js/funcionesJava.js"></script>
+        <script>
+        function codigoFotoServicio(codigoFoto) {
+            var cdf = codigoFoto;
+            //alert ('Aqui esta'+cdf);
+            <?php
+                $cdf = "<script> document.writeln(cdf); </script>";
+                $sqlR=mysqli_query($dbconn, "DELETE FROM `fotoservicio` WHERE `CODFOTOSERVICIO`='$cdf'");
+            ?>
+            alert ('Aqui esta'+cdf);
+        }
+        </script>
     </body>
 </html>

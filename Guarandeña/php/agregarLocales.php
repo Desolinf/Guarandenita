@@ -22,7 +22,6 @@ if (isset($logoServicio1) && $logoServicio1 != "") {
 	if($logoServicio["type"]=="image/png" && $tamañoServicio <= 1000000){
 		$sql = "INSERT INTO `tiendaservicios` (`CODTIENDASERVICIO`, `CODCATEGORIASERVICIO`, `CODADMINISTRADOR`, `NOMBRESERVICIO`, `PROPIETARIO`, `DIRECCIONSERVICIO`, `UBICACIONSERVICIO`, `CELULARSERVICIO`, `TELEFONOSERVICIO`, `ESTADOSERVICIO`, `LOGOSERVICIO`, `CORREO`) VALUES (NULL, '$categoriaTienda', '$codAdmin', '$nombreLocalServicio', '$nombrePropietarioServicio', '$direccionServicio', '$ubicacionServicio', '$celularServicio', '$telefonoServicio', '$estado', '$imagen', '$emailServicio');";
 			if(mysqli_query($dbconn, $sql)){
-				//echo "Datos guardados";
 				echo "<script>alert('Datos guardados'); window.location.href='index.php?p=editarLocales';</script>";
 			}else{
 				echo "Problemas en el servidor, intente nuevamente. Si el problema persiste contacte al administrador";
